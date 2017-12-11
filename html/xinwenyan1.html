@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/xin-wen-yan.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="home-page.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">信工新闻眼</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content  has-header">
+        <ul class="list">
+            <li v-for="item in jsonData.rows">
+                <a :href="'xinwenyan-detail.html?newsId='+item.newsId">
+                    <div class="pic"><img :src="item.pic" alt=""></div>
+                    <div class="content">
+                        <div class="title">{{item.title}}</div>
+                        <div class="titledesc">{{item.titledesc}}</div>
+                        <div class="tip">
+                            <div class="currentTime">{{item.currentTime}}</div>
+                            <div class="count"><img src="../img/xin-wen-yan/12-eye.png" alt=""> {{item.count}}</div>
+
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</main>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.min.js"></script>
+
+<script type="text/javascript">
+   var vue=new Vue({
+       el:'.list',
+       data:{
+           jsonData:{}
+       },
+       created: function (){
+           var _this=this;
+            $.ajax({
+            url: url+'/news/newsList.do',
+            type: 'get',
+            data: {
+            page: 1,
+            rows: 10,
+            type: 0
+            },
+            headers:{
+            token:localStorage.getItem("token")
+            },
+            success: function (data) {
+            console.log(data);
+
+           _this.jsonData=data;
+            }
+
+            })
+   }
+   })
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

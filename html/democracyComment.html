@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/democracyComment.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="comment.html" class="button button-icon ">
+            <img src="../img/xin-wen-yan/返回_btn.png" alt="">
+        </a>
+        <div class="h1 title title-div">民主评议</div>
+    </div>
+</header>
+<main>
+    <div class="box">
+        <div class="mainTitle">评议须知</div>
+        <div class="content"></div>
+    </div>
+    <div class="choose">
+        <select name="" id="" class="select">
+            <option value="请选择" selected>请选择</option>
+        </select>
+        <div class="next">下一步</div>
+    </div>
+
+</main>
+</body>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/handlebars.js"></script>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each rows}}
+
+    <option value="{{branch}}" id="{{id}}">{{branch}}</option>
+
+    {{/each}}
+</script>
+<script type="text/javascript">
+    var html=$('#temp').html();
+    var fun=Handlebars.compile(html);
+    $.ajax({
+        url: url + '/nationComment/getComment.do',
+        type: 'get',
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        success: function (data) {
+            console.log(data);
+            $('.content').html(data.content);
+
+        }
+    });
+    $.ajax({
+        url:url+'/branch/findAll.do',
+        type:'get',
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success:function (data) {
+            console.log(data);
+            $('.select').append(fun(data));
+
+            $('.next').click(function () {
+                location.href='partyMemberList.html?id='+$('option:selected').attr('id');
+            })
+        }
+    })
+
+
+</script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/partyMemberList.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="democracyComment.html" class="button button-icon ">
+            <img src="../img/xin-wen-yan/返回_btn.png" alt="">
+        </a>
+        <div class="h1 title title-div">参评党员</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content has-header">
+        <ul class="list">
+
+        </ul>
+
+    </div>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/handlebars.js"></script>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each rows}}
+    <li class="member" id="{{id}}">
+        <div class="left">
+            <img src="{{header}}" alt="">{{username}}
+        </div>
+        <div class="right">{{branchName}}</div>
+    </li>
+
+    {{/each}}
+</script>
+<script>
+    var html = $('#temp').html();
+    var fun = Handlebars.compile(html);
+    $.ajax({
+        url: url + '/nationComment/userList.do',
+        type: 'get',
+        data: {
+            select_branch: get('id'),
+            page: 1,
+            rows: 20
+        },
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        success: function (data) {
+            console.log(data);
+            $('.list').html(fun(data));
+
+            $('.list').on('click', '.member', function () {
+                var memberId = this.id;
+                console.log(memberId);
+                $.ajax({
+                    url: url + '/nationComment/isComment.do',
+                    type: 'get',
+                    headers: {
+                        token: localStorage.getItem('token')
+                    },
+                    data: {
+                        comment_id: localStorage.getItem('comment_id'),
+                        other_user_id: memberId
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.code == 1) {
+                            location.href = 'submitComment.html?other_user_id=' + memberId;
+                        } else {
+                            var div = document.createElement("div");
+                            div.className = "tip";
+                            $('main').append(div);
+                            $('.tip').text(data.msg);
+                            $('.tip:last-child').show();
+                            $('.tip').animate({bottom: '300px'}, 'slow', function () {
+
+                                $('.tip').fadeOut('slow');
+                                $('.tip').animate({bottom: '0'});
+
+
+                            })
+                        }
+                    }
+                })
+            })
+
+        }
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/dang-fei-jiao-na.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="wo-de-dangjian.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png"
+                                                                           alt=""></a>
+        <div class="h1 title title-div">党费缴纳</div>
+        <div class="button button-clear self">下一步</div>
+    </div>
+</header>
+<main>
+    <div class="num">
+        <input type="text" placeholder="请输入缴费金额" class="money">
+    </div>
+    <div class="next">
+        <div class="pay-style">
+            <div class="big pay-tip">请选择支付方式</div>
+            <div class="box">
+                <div class="left">
+                    <div class="img-div"><img src="../img/dang-fei-jiao-na/weixin.png" alt=""></div>
+                    <div class="word">
+                        <div class="big">微信支付</div>
+                        <div>使用微信支付，安全便捷</div>
+                    </div>
+                </div>
+                <div>
+                    <input type="radio" id="checkbox1" name="ch" value="1">
+                    <label for="checkbox1" id="lab1"></label>
+                </div>
+            </div>
+            <div class="box">
+                <div class="left">
+                    <div class="img-div"><img src="../img/dang-fei-jiao-na/zhifubao.png" alt=""></div>
+                    <div class="word">
+                        <div class="big">支付宝</div>
+                        <div>支持有支付宝，网银的用户使用</div>
+                    </div>
+                </div>
+                <div>
+                    <input type="radio" id="checkbox2" name="ch" checked value="2">
+                    <label for="checkbox2" id="lab2"></label>
+                </div>
+            </div>
+        </div>
+        <div class="ensure">
+            <div class="ensure-pay">确认支付</div>
+        </div>
+    </div>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script>
+
+    $('.self').click(function () {
+        if(isNaN($('.money').val())||$('.money').val()==''){
+            $('.money').val('');
+        }else{
+
+            $(this).hide();
+            $('.next').show();
+        }
+    });
+$('.ensure-pay').click(function () {
+    if($('input:checked').val()==1){
+        location.href='https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F';
+    }else{
+        location.href='https://auth.alipay.com/login/index.htm';
+    }
+})
+
+</script>
+</html>

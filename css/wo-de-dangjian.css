@@ -1,0 +1,65 @@
+main{
+    width:100%;
+}
+main .red-div{
+  border-top:1px solid rgba(255, 255, 255, 0.11);
+    width:100%;
+    height:140px;
+    background-color:  #bd2c00;
+    text-align: center;
+    color:#fff;
+    font-weight: bolder;
+    padding-top:15px;
+
+}
+main .red-div img{
+    width:60px;
+    height:60px;
+    border-radius: 50%;
+}
+main .red-div div{
+    padding-top: 10px;
+}
+main .list-div{
+    width:100%;
+    height:55px;
+    border-bottom: 1px solid #e6e6e6;
+    line-height: 50px;
+}
+main .list-div .same{
+    display: flex;
+    justify-content: space-between;
+    color:#69717d;
+    height:100%;
+
+}
+main .list-div .same>div{
+    height:100%;
+    padding:5px 0;
+    display:flex;
+}
+main .list-div .list-div-img{
+    margin:0 10px 0 25px;
+    vertical-align: middle;
+    height: 100%;
+}
+
+main .list-div  .go{
+    margin: 18px;
+}
+main .off-div{
+    width:100%;
+    padding:10px 30px;
+    text-align: center;
+    color: #fff;
+    font-weight: bolder;
+    margin-top: 30px;
+}
+main .off-div .off{
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    background-color:#bd2c00 ;
+    padding:10px;
+    border-radius: 5px;
+}

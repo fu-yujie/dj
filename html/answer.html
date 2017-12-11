@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/interactiveList.css">
+    <link rel="stylesheet" href="../css/answer.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="interactiveList.html" class="button button-icon ">
+            <img src="../img/xin-wen-yan/返回_btn.png" alt="">
+        </a>
+        <div class="h1 title title-div">党员云互动</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content has-header">
+    <ul class="list">
+        <li>
+            <div class="white">
+                <div class="top">
+                    <div class="header-img"><img src="" alt="" class="img"></div>
+                    <div>
+                        <div class="name"></div>
+                        <div class="time-div">
+                            <img src="../img/interactiveList/时间.png" alt="" class="small">
+                            <div class="time"></div>
+                            <img src="../img/interactiveList/声音.png" alt="" class="small"> 公开
+                        </div>
+                    </div>
+                </div>
+                <div class="content"></div>
+            </div>
+        </li>
+    </ul>
+    <ul class="answer-list">
+
+    </ul>
+    <div class="no">还没有数据</div>
+    <form id="comment">
+        <div class="input-div"><input type="text" placeholder="评论内容" class="comment-content" name="comment" value="">
+        </div>
+        <div class="sureComment">评论</div>
+    </form>
+    </div>
+</main>
+
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/handlebars.js"></script>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each commentList}}
+    <li>
+
+            <div class="top">
+                <div class="header-img"><img src="{{header}}" alt="" class="img"></div>
+                <div>
+                    <div class="name">{{username}}</div>
+                    <div class="time-div">
+                        <img src="../img/interactiveList/时间.png" alt="" class="small">
+                        <div class="time">{{timeFormat}}</div>
+                        <img src="../img/interactiveList/声音.png" alt="" class="small"> 公开
+                    </div>
+                </div>
+            </div>
+            <div class="content">{{comment}}</div>
+
+    </li>
+
+{{/each}}
+</script>
+<script>
+    var html = $('#temp').html();
+    var fun = Handlebars.compile(html);
+    $.ajax({
+        url: url + '/forum/forumDetail.do',
+        type: 'get',
+        data: {
+            forum_id: get('forum_id')
+        },
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        success: function (data) {
+            console.log(data);
+            $('.img').attr('src', data.header);
+            $('.name').text(data.username);
+            $('.time').text(data.currentTime);
+            $('.content').text(data.content);
+            $('.answer-list').html(fun(data));
+
+
+        }
+
+    });
+    $('.sureComment').click(function () {
+        $.ajax({
+            url: url + '/forum/addComment.do',
+            type: 'post',
+            data: {
+                forum_id: get('forum_id'),
+                comment: $('.comment-content').val()
+            },
+            headers: {
+                token: localStorage.getItem('token')
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
+        window.location.reload();
+
+    })
+</script>
+</html>

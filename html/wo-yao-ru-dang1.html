@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/wo-yao-ru-dang1.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="dangyuan_zhaozuzhi.html" class="button button-clear">
+            <img src="../img/xin-wen-yan/返回_btn.png" alt="">
+        </a>
+        <div class="h1 title title-div">我要入党</div>
+    </div>
+</header>
+<main>
+    <h4>申请须知</h4>
+    <p>一、年满18周岁以上的中国，年满18周岁以上的中国，年满18周岁以上的中国，年满18周岁以上的中国，</p>
+    <p>二、年满18周岁以上的中国。</p>
+    <p>三、年满18周岁以上的中国。</p>
+    <p>四、年满18周岁以上的中国。</p>
+    <div class="agree"><img src="../img/wo-yao-ru-dang1/勾_未选.png" alt="" class="gou"><span>我已阅读并同意以上内容</span></div>
+    <div class="shenqing">
+        <div  class="want">我要申请</div>
+        <div class="jiazai">
+            <img src="../img/wo-yao-ru-dang1/正在加载.png" alt="">
+        </div>
+    </div>
+
+
+</main>
+<script src="../js/jquery.js"></script>
+<script>
+    $('.gou').click(function () {
+        if ($(this).attr('src') == '../img/wo-yao-ru-dang1/勾_未选.png') {
+            $(this).attr('src', '../img/wo-yao-ru-dang1/选中.png');
+        } else {
+            $(this).attr('src', '../img/wo-yao-ru-dang1/勾_未选.png');
+        }
+
+    });
+    $('.want').click(function () {
+        if($('.gou').attr('src')=='../img/wo-yao-ru-dang1/选中.png'){
+            $('.jiazai').show();
+            setTimeout(function () {
+                location.href="wo-yao-ru-dang2.html";
+
+            },3000)
+
+        }
+
+    });
+</script>
+</body>
+</html>

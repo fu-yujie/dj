@@ -1,0 +1,44 @@
+
+main{
+    padding:15px;
+}
+main h4{
+    text-align: center;
+}
+main img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+main p{
+    color: #69717d;
+}
+main .agree span{
+    font-weight: bolder;
+}
+main .shenqing{
+    margin-top:20px ;
+    padding:0 30px;
+    width:100%;
+    height: 200px;
+    position:relative;
+}
+main .shenqing .want{
+    width:100%;
+    height:40px;
+    line-height: 40px;
+    background-color: #bd2c00;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    font-weight: bolder;
+    text-decoration: none;
+    display: block;
+
+}
+main .jiazai{
+    position: absolute;
+    margin:auto;
+    left:40%;
+    top:-20%;
+    display: none;
+}

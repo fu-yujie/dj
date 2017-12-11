@@ -1,0 +1,49 @@
+main{
+    padding:5px;
+}
+main .personalSummary{
+    text-align: center;
+    width:100%;
+    padding:20px;
+    font-weight: bolder;
+    font-size: 16px;
+}
+main .sub-div{
+    width: 100%;
+    padding:10px 10px 10px 20px;
+    position: fixed;
+    bottom:0;
+    left: 0;
+    background-color: rgba(230, 230, 230, 0.42);
+}
+main .sub-div input{
+    display: none;
+}
+main .sub-div label{
+    display: inline-block;
+    width:20px;
+    height:20px;
+    background-color: #fff;
+    border-radius: 50%;
+    color:#fff ;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16px;
+    vertical-align: middle;
+    margin:0 5px;
+}
+main .sub-div input:checked+label:after{
+    content:'\2714';
+}
+main .sub-div input:checked+label{
+    background-color: red;
+}
+main .sub-div .sureSubmit{
+    display: inline-block;
+    background-color: #fff;
+    border:1px solid red;
+    color: red;
+    padding:0 3px;
+    border-radius: 5px;
+    margin-left: 20px;
+}

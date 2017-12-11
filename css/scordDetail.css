@@ -1,0 +1,12 @@
+.list li{
+    width:100%;
+    padding:10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.list li .up{
+    display: flex;
+    justify-content: space-between;
+}
+.list li .up div:last-child{
+    color: red;
+}

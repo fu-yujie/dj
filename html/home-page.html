@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/swiper.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/home-page.css">
+</head>
+<body>
+<div class="container">
+    <div class="bar bar-header bar-color ">
+        <button class="button button-clear"><img src="../img/home-page/logo.png" alt=""></button>
+        <a class="button button-clear login" href="login.html">登录</a>
+    </div>
+<div class="scroll-content has-tabs has-header">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="">
+                    <img src="../img/home-page/banner.png" alt="" class="slide-img">
+                    <div class="slide-title">一腔热血，参军报国</div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="">
+                    <img src="../img/home-page/banner.png" alt="" class="slide-img">
+                    <div class="slide-title">一腔热血，参军报国</div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="">
+                    <img src="../img/home-page/banner.png" alt="" class="slide-img">
+                    <div class="slide-title">一腔热血，参军报国</div>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="">
+                    <img src="../img/home-page/banner.png" alt="" class="slide-img">
+                    <div class="slide-title">一腔热血，参军报国</div>
+                </a>
+            </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+        <!--新闻标题提示-->
+
+    </div>
+
+    <div class="six-container">
+        <img src="../img/home-page/bt_bg.png" alt="" class="back-img">
+        <div class="six-div">
+            <a href="xin-wen-yan.html"><img src="../img/home-page/icon_01.png" alt="">
+                <div>信工新闻眼</div>
+            </a>
+            <a href="dangyuan_zhaozuzhi.html"><img src="../img/home-page/icon_03.png" alt="">
+                <div>掌上组织生活</div>
+            </a>
+            <a href="interactiveList.html"><img src="../img/home-page/icon_05.png" alt="">
+                <div>党员云互动</div>
+            </a>
+            <a href=""><img src="../img/home-page/icon_04.png" alt="">
+                <div>党建一点通</div>
+            </a>
+            <a href=""><img src="../img/home-page/icon_06.png" alt="">
+                <div>党员亮身份</div>
+            </a>
+            <a href=""><img src="../img/home-page/icon_02.png" alt="">
+                <div>党史上的今天</div>
+            </a>
+
+
+        </div>
+
+    </div>
+
+    <div class="img-div"><img src="../img/home-page/banner01.png" alt=""></div>
+
+    <div class="tesedangjian">
+        <img src="../img/home-page/专栏.png" alt="">
+        <div class="over-div">
+            <div></div>
+            <div>
+                <a href="" class="suishi"></a>
+                <a href="" class="zhidu"></a>
+            </div>
+            <div>
+                <a href="" class="pai"></a>
+                <a href="" class="huodong"></a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <div class="bar bar-footer self-footer">
+        <a href="home-page.html" class="red red-border">
+            <i class="icon iconfont icon-amy-logo-danghui"></i>
+            首页
+        </a>
+        <a href="tongzhi-zaozhidao.html">
+            <i class="icon iconfont icon-xinxi"></i>
+            通知早知道
+        </a>
+        <a href="wo-de-dangjian.html">
+            <i class="icon iconfont icon-geren"></i>
+            我的党建
+        </a>
+    </div>
+
+
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/swiper.jquery.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'horizontal',
+        autoplay: 3000,
+        autoplayDisableOnInteraction: false,
+        loop: true,
+        // 如果需要分页器
+        pagination: '.swiper-pagination'
+    });
+
+
+    if(localStorage.getItem('token')!=''){
+        $('.login').hide();
+    } else{
+        $('.login').show();
+    }
+</script>
+
+</body>
+</html>

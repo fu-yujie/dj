@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/status.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="report.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">思想汇报</div>
+    </div>
+</header>
+<main>
+    <div class="img-div">
+        <img src="" alt="" class="image">
+        <div class="word"></div>
+    </div>
+    <div class="tip-div">
+        <div class="tip"></div>
+    </div>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script>
+    $.ajax({
+        url:url+'/impress/checkByUserId.do',
+        type:'post',
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success:function (data) {
+            console.log(data);
+            switch(data.type){
+                case -1:
+                    $('.image').prop('src','../img/status/失败.png');
+                    $('.word').text('未提交');
+                    $('.tip').text('开始上传');
+                    $('.tip').click(function () {
+                        location.href='report.html';
+                    });
+                    break;
+                case 0:
+                    $('.image').prop('src','../img/status/审核中.png');
+                    $('.word').text('正在审核中');
+                    $('.tip').text('关闭');
+                    $('.tip').click(function () {
+                        location.href='dangyuan_zhaozuzhi.html';
+                    });
+                    break;
+                case 1:
+                    $('.image').prop('src','../img/status/通过.png');
+                    $('.word').text('审核成功');
+                    $('.tip').text('继续提交');
+                    $('.tip').click(function () {
+                        location.href='report.html';
+                    });
+                    break;
+                case 2:
+                    $('.image').prop('src','../img/status/失败.png');
+                    $('.word').text('审核失败');
+                    $('.tip').text('重新上传');
+                    $('.tip').click(function () {
+                        location.href='report.html';
+                    });
+                    break;
+            }
+        }
+    })
+
+</script>
+</html>

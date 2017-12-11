@@ -1,0 +1,25 @@
+html,body,main{
+    width:100%;
+}
+main .box{
+    width:100%;
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .content{
+    padding:10px;
+
+}
+main .content a,main .content div{
+    display:block;
+    text-align: center;
+    text-decoration: none;
+    color:#fff;
+    font-weight: bolder;
+    background-color: #bd2c00;
+    padding:10px 50px;
+    margin:10px;
+    border-radius: 5px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/xin-wen-yan.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="home-page.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">信工新闻眼</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content  has-header">
+    <ul class="list">
+
+    </ul>
+    </div>
+</main>
+<script src="../js/jquery.js"></script>
+<script src="../js/handlebars.js"></script>
+<script src="../js/public.js"></script>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each rows}}
+    <li>
+        <a href="xinwenyan-detail.html?newsId={{newsId}}">
+        <div class="pic"><img src="{{pic}}" alt=""></div>
+        <div class="content">
+            <div class="title">{{title}}</div>
+            <div class="titledesc">{{titledesc}}</div>
+            <div class="tip">
+                <div class="currentTime">{{currentTime}}</div>
+                <div class="count"><img src="../img/xin-wen-yan/12-eye.png" alt=""> {{count}}</div>
+
+            </div>
+        </div>
+        </a>
+    </li>
+
+    {{/each}}
+
+</script>
+<script type="text/javascript">
+    var html = $('#temp').html();
+    var fun = Handlebars.compile(html);
+    $.ajax({
+        url: url+'/news/newsList.do',
+        type: 'get',
+        data: {
+            page: 1,
+            rows: 10,
+            type: 0
+        },
+        headers:{
+            token:localStorage.getItem("token")
+        },
+        success: function (data) {
+            console.log(data);
+            $('.list').html(fun(data));
+        }
+
+    })
+
+
+</script>
+</body>
+</html>

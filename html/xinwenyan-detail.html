@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/xinwenyan-detail.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="xin-wen-yan.html" class="button button-icon "><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">信工新闻眼</div>
+    </div>
+</header>
+<div class="vueDiv">
+<main class="main">
+    <div class="scroll-content  has-header has-tabs">
+    <div class="main-title" v-text="jsonData.data.title"></div>
+    <div><img :src="jsonData.data.pic" alt="" class="main-pic" ></div>
+    <div class="main-content" v-html="jsonData.data.content"></div>
+    </div>
+</main>
+<footer>
+    <div class="tabs self-tabs">
+        <div>
+            <img src="../img/xinwenyan-detail/收藏-副本.png" alt="" class="change-red" @click="collected">
+            <img src="../img/xinwenyan-detail/分享.png" alt="" class="shar" @click="sureShare">
+        </div>
+    </div>
+</footer>
+<div class="shar-page" v-show="sharPageBoolern">
+    <div class="black"></div>
+    <div class="shar-place">
+        <a href="">
+            <img src="../img/xinwenyan-detail/微信.png" alt="">
+            <div>微信</div>
+        </a>
+        <a href="">
+            <img src="../img/xinwenyan-detail/朋友圈.png" alt="">
+            <div>朋友圈</div>
+        </a>
+        <a href="">
+            <img src="../img/xinwenyan-detail/qq.png" alt="">
+            <div>QQ</div>
+        </a>
+        <a href="">
+            <img src="../img/xinwenyan-detail/qq空间.png" alt="">
+            <div>QQ空间</div>
+        </a>
+    </div>
+    <div class="tabs self-tabs" @click="cancelShare">
+    <div class="cancle">取消</div>
+    </div>
+</div>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script src="../js/vue.min.js"></script>
+<script type="text/javascript">
+var vue=new Vue({
+    el:'.vueDiv',
+    data:{
+        sharPageBoolern:false,
+        jsonData:{}
+    },
+    created:function () {
+        var _this=this;
+        $.ajax({
+            url:url+'/news/newsContent.do',
+            type:'get',
+            data:{
+                newsId:get('newsId')
+            },
+            headers:{
+                token:localStorage.getItem("token")
+            },
+            success:function(data){
+                console.log(data);
+               _this.jsonData=data;
+            }
+        });
+    },
+    methods:{
+        collected:function () {
+            if( $('.change-red').attr('src')=='../img/xinwenyan-detail/收藏-副本.png'){
+                $('.change-red').attr('src','../img/xinwenyan-detail/收藏.png');
+            }else{
+                $('.change-red').attr('src','../img/xinwenyan-detail/收藏-副本.png');
+            }
+        },
+        sureShare:function () {
+            this.sharPageBoolern=true;
+        },
+        cancelShare:function () {
+            this.sharPageBoolern=false;
+        }
+
+    }
+})
+
+
+
+
+
+</script>
+</body>
+</html>

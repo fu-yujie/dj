@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+/*顶部*/
+.container .bar-color{
+    background-color: red;
+    border: 0;
+    background-size: 100% 0;
+}
+.container .bar-color .button img{
+    width:130px;
+}
+.container .bar-color a{
+    color:#fff;
+    text-decoration: none;
+}
+
+/*滑块*/
+.container .swiper-container {
+  height:auto;
+}
+.container .swiper-container .swiper-wrapper .swiper-slide a{
+    display: block;
+    width:100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bolder;
+}
+.container .swiper-container .swiper-wrapper .swiper-slide  .slide-img{
+    width:100%;
+    vertical-align: middle;
+}
+.container .swiper-container .swiper-wrapper .swiper-slide .slide-title{
+    width:100%;
+    padding:3px;
+    background-color: rgba(0, 0, 0, 0.54);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/*六块*/
+.container .six-container{
+    width:100%;
+    position: relative;
+}
+.container .six-container .back-img{
+    width:100%;
+    vertical-align: middle;
+}
+.container .six-container .six-div{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display:flex;
+    flex-wrap: wrap;
+
+}
+.container .six-container .six-div a{
+    width:33.3333%;
+    height:50%;
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+    align-items: center;
+    color:  #69717d;
+    text-decoration: none;
+
+}
+
+/*深入学习贯彻落实党的十八大精神*/
+.container .img-div{
+    width:100%;
+}
+.container .img-div img{
+    width:100%;
+    vertical-align: middle;
+}
+
+/*特色党建*/
+.container .tesedangjian{
+    width:100%;
+    position: relative;
+}
+.container .tesedangjian img{
+    width:100%;
+    vertical-align: middle;
+}
+.container .tesedangjian .over-div{
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display: flex;
+}
+.container .tesedangjian .over-div div{
+    width:33.3333%;
+    display: flex;
+    flex-direction: column;
+}
+.container .tesedangjian .over-div div a{
+    height:50%;
+    width:100%;
+}
+
+

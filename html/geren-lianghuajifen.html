@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/geren-lianghuajifen.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="wo-de-dangjian.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">个人量化积分</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content has-header">
+    <div class="red-div">
+        <div class="word"></div>
+    </div>
+    <div class="grey-div ">
+
+        <a href="scordDetail.html" class="mingxi">
+            <div>
+                <img src="../img/geren-lianghuajifen/积分明细icon.png" alt="">积分明细
+            </div>
+            <img src="../img/wo-de-dangjian/形状-7-拷贝-5.png" alt="" class="go personal-mes">
+        </a>
+
+
+
+        <div class="guize">
+            <div>积分规则</div>
+            <img src="../img/geren-lianghuajifen/问号icon@2x.png" alt="">
+        </div>
+        <div class="same ">
+            <div>登录APP</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>完善个人信息</div>
+            <div class="num">2</div>
+        </div>
+        <div class="same ">
+            <div>查看积分</div>
+            <div class="num">1</div>
+        </div>
+        <div class="same ">
+            <div>按时交纳党费</div>
+            <div class="num">10</div>
+        </div>
+        <div class="same ">
+            <div>查看通知</div>
+            <div class="num">2</div>
+        </div>
+        <div class="same ">
+            <div>了解学院工作状态</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>上交思想汇报审核通过</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>主动学习相关文件</div>
+            <div class="num">10</div>
+        </div>
+        <div class="same ">
+            <div>认真撰写心得总结并上交，经审核通过</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>提交个人总结，并参与评议</div>
+            <div class="num">2</div>
+        </div>
+        <div class="same ">
+            <div>积极参与互动</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>学习党建知识</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>学习党史</div>
+            <div class="num">10</div>
+        </div>
+        <div class="same ">
+            <div>创先争优事迹</div>
+            <div class="num">10</div>
+        </div>
+        <div class="same ">
+            <div>学党章，学习近平总书记系列讲话</div>
+            <div class="num">10</div>
+        </div>
+        <div class="same ">
+            <div>用镜头记录两学一做过程中令人感动的人和事</div>
+            <div class="num">3</div>
+        </div>
+        <div class="same ">
+            <div>关注并积极参与特色活动</div>
+            <div class="num">5</div>
+        </div>
+        <div class="same ">
+            <div>制度化、常态化建设</div>
+            <div class="num">5</div>
+        </div>
+
+
+
+    </div>
+    </div>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script>
+    $.ajax({
+        url: url + '/user/userInfo.do',
+        type: 'get',
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        data: {
+            page: 1,
+            rows: 10
+        },
+        success: function (data) {
+            console.log(data);
+            console.log(data.data.totalScore);
+            $('.word').text(data.data.totalScore);
+        }
+    })
+</script>
+</html>

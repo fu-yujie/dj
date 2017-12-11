@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="dangyuan_zhaozuzhi.html" class="button button-clear">
+            <img src="../img/xin-wen-yan/返回_btn.png" alt="">
+        </a>
+        <div class="h1 title title-div">思想汇报</div>
+    </div>
+</header>
+<main>
+    <div class="white">
+        <div class="select-img">
+
+            <div class="upload-img">
+                <img src="../img/report/图片.png" alt="" class="add">
+                <input type="file" id="file">
+            </div>
+        </div>
+        <div class="upload same">
+            <div class="audit same-child">提交审核</div>
+        </div>
+    </div>
+    <div class="tip-div"><div class="tip"></div></div>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script>
+    /*document.getElementById('file').onchange = function () {
+     var file = this.files[0];
+     var fr = new FileReader();
+     fr.readAsDataURL(file);
+     fr.onload = function () {
+     var img = document.createElement('img');
+     img.setAttribute('src', this.result);
+     document.getElementsByClassName('upload-img')[0].appendChild(img);
+     }
+     };
+     */
+    $('.add').height($('.add').width());
+
+    $('.add:last').click(function () {
+        $('#file').click();
+    });
+
+    var arr = [];
+    $('#file').change(function () {
+
+        var file = this.files[0];
+        var fr = new FileReader();
+        fr.readAsDataURL(file);
+        fr.onload = function () {
+            var div = document.createElement('div');
+            div.className = 'upload-img';
+            var img = document.createElement('img');
+            img.className = 'add';
+            img.src = this.result;
+            var base = this.result.split(',')[1];
+            $(div).insertBefore('.upload-img:last');
+            $(div).append(img);
+            $('.add').height($('.add').width());
+            $.ajax({
+                url: url + '/image/uploadBase64.do',
+                type: 'post',
+                data: {
+                    myFile: base
+                },
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+                success: function (data) {
+                    console.log(data);
+                    arr.push(data.url);
+                }
+            })
+
+
+        };
+    });
+    $('.tip-div').hide();
+    $('.audit').click(function () {
+        var fo = new FormData();
+        fo.append('pic_list', arr);
+        console.log(fo);
+        console.log(arr);
+        $.ajax({
+            url: url + '/impress/saveImpress.do',
+            type: 'post',
+            data: fo,
+            processData: false,
+            contentType: false,
+            headers: {
+                token: localStorage.getItem('token')
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.code) {
+                    location.href = 'status.html';
+                }else{
+                    $('.tip-div').show();
+                    $('.tip').text(data.msg);
+                }
+
+            }
+        });
+
+    })
+
+
+</script>
+
+</html>

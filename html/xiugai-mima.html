@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/xiugai-mima.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="wo-de-dangjian.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">修改密码</div>
+    </div>
+</header>
+<main>
+    <form id="form" class="input-mes">
+
+        <div>旧密码:</div>
+        <div class="input-div"><input type="password" placeholder="输入旧密码" class="past" name="oldPwd" value=""></div>
+        <div>新密码：</div>
+        <div class="input-div"><input type="password" placeholder="输入新密码" class="new" name="newPwd" value=""></div>
+        <div class="input-div"><input type="password" placeholder="再次输入新密码" class="again" ></div>
+        <div class="submit-div">
+            <div class="submit">提交</div>
+        </div>
+
+    </form>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script>
+    $('.submit').click(function () {
+        if ($('.new').val() != '' && $('.again').val() != '' && $('.new').val() == $('.again').val()) {
+            $('again').prop('disabled',true);
+            var fo = new FormData($('#form')[0]);
+            $.ajax({
+                url: url + '/user/updatePwd.do',
+                type: 'post',
+                processData: false,
+                contentType: false,
+                data: fo,
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+                success: function (data) {
+                    console.log(data);
+                    console.log('chenggong')
+                }
+            })
+        }
+
+    })
+
+
+</script>
+</html>

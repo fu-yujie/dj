@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/comment.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="dangyuan_zhaozuzhi.html" class="button button-icon "><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">掌上组织生活</div>
+    </div>
+</header>
+<main>
+    <div class="box">
+        <div class="content">
+            <a href="personalSummary.html">个人总结</a>
+            <div class="democracyComment">民主评议</div>
+        </div>
+    </div>
+</main>
+</body>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+
+<script>
+    $.ajax({
+        url:url+'/nationComment/judgeComment.do',
+        type:'post',
+        headers:{
+            token:localStorage.getItem('token')
+        },
+        success:function (data) {
+            console.log(data);
+            localStorage.setItem('comment_id', data.tbComment.id);
+            if(data.tbComment.isOpen){
+                $('.democracyComment').click(function () {
+                    location.href='democracyComment.html';
+                });
+
+            }
+        }
+    })
+</script>
+
+</html>

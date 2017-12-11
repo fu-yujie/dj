@@ -1,0 +1,104 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #bd2c00;
+}
+
+header {
+    height: 44px;
+}
+
+header .login-header {
+    background-color: #bd2c00;
+    border-bottom: 0;
+    background-size: 100% 0;
+}
+
+header .login-header .title-div {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+
+
+
+
+main .logo-div {
+    width: 100%;
+
+}
+
+main .logo-img {
+    width: 50%;
+    display: flex;
+    margin: 30px auto;
+}
+main input[type='text']{
+
+}
+.mes {
+    width: 100%;
+    padding: 30px;
+}
+
+main .mes .id-div, main .mes .pass-div {
+    border: 2px solid gold;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #bd2c00;
+    color: #fff;
+    font-weight: bolder;
+}
+
+main .mes .id-card, main .mes .password {
+    height: 45px;
+    display: inline-block;
+    width:auto;
+    background-color: #bd2c00;
+    color: #ffffff;
+    line-height: 45px;
+
+}
+
+main .mes span {
+    width:70px;
+    display: inline-block;
+    text-align: right;
+    height: 45px;
+    line-height: 45px;
+}
+
+main .mes .id-div, main .mes .pass-div {
+    margin-bottom: 15px;
+}
+
+main .login-button {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.65);
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bolder;
+
+}
+main .tip-div{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    color:#fff;
+    font-weight: bolder;
+}
+main .tip{
+    margin:auto;
+    background-color: rgba(0, 0, 0, 0.72);
+    padding:10px;
+    border-radius: 5px;
+}

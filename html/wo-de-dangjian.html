@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/wo-de-dangjian.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <div class="h1 title title-div">我的党建</div>
+    </div>
+</header>
+
+<main>
+    <div class="red-div">
+        <img src="../img/wo-de-dangjian/头像.png" alt="" class="header">
+        <div class="rightNow">马上登陆，获取更多党建咨询</div>
+    </div>
+    <div class="list-div">
+        <div class="mes same">
+            <div>
+                <img src="../img/wo-de-dangjian/个人信息.png" alt="" class="list-div-img"> 个人信息
+            </div>
+            <img src="../img/wo-de-dangjian/形状-7-拷贝-5.png" alt="" class="go personal-mes">
+        </div>
+    </div>
+    <div class="list-div">
+        <div class="scord same">
+            <div>
+                <img src="../img/wo-de-dangjian/量化积分icon.png" alt="" class="list-div-img"> 个人量化积分
+            </div>
+            <img src="../img/wo-de-dangjian/形状-7-拷贝-5.png" alt="" class="go personal-scord">
+        </div>
+    </div>
+    <div class="list-div ">
+        <div class="password same">
+            <div>
+                <img src="../img/wo-de-dangjian/修改密码icon.png" alt="" class="list-div-img"> 修改密码
+            </div>
+            <img src="../img/wo-de-dangjian/形状-7-拷贝-5.png" alt="" class="go change-password">
+        </div>
+    </div>
+    <div class="list-div">
+        <div class="dues same">
+            <div>
+                <img src="../img/dangyuan_zhaozuzhi/icon3.png" alt="" class="list-div-img"> 党费缴纳
+            </div>
+            <img src="../img/wo-de-dangjian/形状-7-拷贝-5.png" alt="" class="go partyDues">
+        </div>
+    </div>
+    <div class="off-div">
+        <a href="wo-de-dangjian.html" class="off">退出登录</a>
+    </div>
+</main>
+
+
+<div class="bar bar-footer self-footer">
+    <a href="home-page.html">
+        <i class="icon iconfont icon-amy-logo-danghui"></i>
+        首页
+    </a>
+    <a href="tongzhi-zaozhidao.html">
+        <i class="icon iconfont icon-xinxi"></i>
+        通知早知道
+    </a>
+    <a href="wo-de-dangjian.html" class="red">
+        <i class="icon iconfont icon-geren"></i>
+        我的党建
+    </a>
+</div>
+
+
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+
+<script>
+    $('.rightNow').click(function () {
+        location.href = 'login.html';
+    });
+    $('.mes').click(function () {
+        location.href = 'login.html';
+    });
+    $('.scord').click(function () {
+        location.href = 'login.html';
+    });
+    $('.password').click(function () {
+        location.href = 'login.html';
+    });
+    $('.dues').click(function () {
+        location.href = 'login.html';
+    });
+    $('.off').hide();
+
+
+    $.ajax({
+        url: url + '/user/userInfo.do',
+        type: 'get',
+        headers: {
+            token: localStorage.getItem("token")
+        },
+        success: function (data) {
+            console.log(data);
+            if (data.code) {
+                $('.header').attr('src', data.data.header);
+                $('.rightNow').text(data.data.username);
+                $('.mes').click(function () {
+                    location.href = 'geren-xinxi.html';
+                });
+                $('.scord').click(function () {
+                    location.href = 'geren-lianghuajifen.html';
+                });
+                $('.password').click(function () {
+                    location.href = 'xiugai-mima.html';
+                });
+                $('.dues').click(function () {
+                    location.href = 'dang-fei-jiao-na.html';
+                });
+                $('.off').show();
+
+            }
+            $('.off').click(function () {
+                $('.off').hide();
+                localStorage.setItem('token', '');
+            });
+        }
+    })
+
+</script>
+
+</body>
+</html>

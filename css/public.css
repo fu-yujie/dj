@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*新闻列表的头部*/
+header {
+    height: 44px;
+}
+
+header .login-header {
+    background-color: #bd2c00;
+    border-bottom: 0;
+    background-size: 100% 0;
+}
+
+header .login-header .title-div {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+/*滚动*/
+.scroll-content{
+    overflow-y: auto;
+}
+
+/*首页三项的底部*/
+ .self-footer{
+    display: flex;
+    border:0;
+    padding:0;
+}
+ .self-footer a{
+    width:33.3333%;
+    display: flex;
+    flex-direction: column;
+    color: #69717d;
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    padding:5px 0;
+}
+ .self-footer a i{
+    font-size: 22px;
+}
+ .self-footer .red{
+    color:red;
+ }
+.self-footer .red-border{
+    border-top:2px solid red;
+}
+::-webkit-scrollbar{
+    width:0;
+}

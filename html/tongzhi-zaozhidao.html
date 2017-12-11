@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/swiper.css">
+    <link rel="stylesheet" href="../iconfont/iconfont.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/tongzhi-zaozhidao.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="home-page.html" class="button button-clear"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">通知早知道</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content  has-header">
+        <ul class="list">
+
+        </ul>
+    </div>
+
+</main>
+
+
+<footer>
+<div class="bar bar-footer self-footer">
+    <a href="home-page.html" >
+        <i class="icon iconfont icon-amy-logo-danghui"></i>
+        首页
+    </a>
+    <a href="tongzhi-zaozhidao.html" class="red">
+        <i class="icon iconfont icon-xinxi"></i>
+        通知早知道
+    </a>
+    <a href="wo-de-dangjian.html">
+        <i class="icon iconfont icon-geren"></i>
+        我的党建
+    </a>
+</div>
+</footer>
+
+
+
+<script src="../js/jquery.js"></script>
+<script src="../js/handlebars.js"></script>
+<script src="../js/public.js"></script>
+<script id="temp" type="text/x-handlebars-template">
+    {{#each rows}}
+    <li>
+
+            <div class="pic">
+                <img src="../img/tongzhi-zaozhidao/iconfont_grey.png" alt="" class="laba">
+            </div>
+            <div class="content">
+                <a href="tongzhi-zaozhidao-detail.html?newsId={{newsId}}" class="title">{{title}}</a>
+                <div class="currentTime">{{currentTime}}</div>
+                <div class="titledesc">{{titledesc}}</div>
+            </div>
+
+    </li>
+
+    {{/each}}
+
+</script>
+<script type="text/javascript">
+    var html=$('#temp').html();
+    var fun=Handlebars.compile(html);
+    $.ajax({
+        url:url+'/news/newsList.do',
+        type:'get',
+        data:{
+            page: 1,
+            rows: 10,
+            type: 2
+        },
+        headers:{
+            token:localStorage.getItem("token")
+        },
+        success:function(data){
+            $('.list').html(fun(data));
+            console.log(data);
+        }
+    });
+
+    $('.list').on('click','.laba',function(){
+        $(this).attr('src','../img/tongzhi-zaozhidao/iconfont_gonggaotongzhi.png')
+    })
+
+</script>
+</body>
+</html>

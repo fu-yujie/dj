@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="form" action="" method="post">
+    <input type="file" name="file" hidden="hidden" value=""/>
+</form>
+<div>
+<span id="imgs">
+
+</span>
+    <input type="button" name="btn" id="btn" value="上传文件"/></div>
+
+<script> //选择文件是会产生一个files数组,里面存放的是所上传文件的对象
+document.getElementById("btn").onclick=function() {
+    document.getElementById("form").lastElementChild.click();
+    document.getElementById("form").lastElementChild.onchange = onchange;
+    function onchange(e) {
+        var files = document.getElementById("form").lastElementChild.files[0];
+        console.log(files);
+
+        if (!/image\/\w+/.test(files.type)) {
+            alert("请选择图片");
+            return false;
+        }
+        var reader = new FileReader();
+//将文件以Data URL形式读入页面
+        reader.readAsDataURL(files);
+        reader.onload = function (e) {
+//显示文件
+            var img = document.createElement("img");
+            img.src = this.result;
+            document.getElementById("imgs").appendChild(img);
+            var fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.hidden = "hidden";
+            fileInput.onchange = onchange;
+            document.getElementById("form").appendChild(fileInput)
+        }
+    }
+}
+</script>
+
+</body>
+</html>

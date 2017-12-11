@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/*滑块*/
+.container .swiper-container {
+  height:auto;
+}
+.container .swiper-container .swiper-wrapper .swiper-slide a{
+    display: block;
+    width:100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bolder;
+}
+.container .swiper-container .swiper-wrapper .swiper-slide  .slide-img{
+    width:100%;
+    vertical-align: middle;
+}
+.container .swiper-container .swiper-wrapper .swiper-slide .slide-title{
+    width:100%;
+    padding:3px;
+    background-color: rgba(0, 0, 0, 0.54);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ionic.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/geren-xinxi.css">
+</head>
+<body>
+<header>
+    <div class="bar bar-header login-header">
+        <a href="wo-de-dangjian.html" class="button button-clear back"><img src="../img/xin-wen-yan/返回_btn.png" alt=""></a>
+        <div class="h1 title title-div">个人党建信息</div>
+        <div class="button button-clear edit">编辑</div>
+    </div>
+</header>
+<main>
+    <div class="scroll-content has-header">
+        <form action="" id="upLoadForm">
+            <div class="mes-div">
+                <div class="same touxiang">
+                    <div>头像</div>
+                    <div>
+                        <input type="file" class="choose">
+                        <input type="text" name="header" class="hid">
+                        <img src="" alt="" class="header">
+                    </div>
+
+                </div>
+                <div class="same">
+                    <div>姓名</div>
+                    <input type="text" class="grey name" name="username">
+                </div>
+                <div class="same">
+                    <div>身份证</div>
+                    <div class="grey id-card"></div>
+
+                </div>
+                <div class="same">
+                    <div>家庭住址</div>
+                    <input type="text" class="grey home-address" name="hometown">
+
+                </div>
+                <div class="same">
+                    <div>工作地址</div>
+                    <input type="text" class="grey job-address" name="address">
+
+                </div>
+                <div class="same">
+                    <div>民族</div>
+                    <input type="text" class="grey nation" name="nation">
+
+                </div>
+                <div class="same">
+                    <div>微信号</div>
+                    <input type="text" class="grey weixin" name="wxNum">
+
+                </div>
+                <div class="same">
+                    <div>qq号</div>
+                    <input type="text" class="grey qq" name="qqNum">
+
+                </div>
+                <div class="same">
+                    <div>性别</div>
+                    <div class="grey sex">
+                        <div class="radio-edit">
+
+                            <input type="radio" name="sex" value="0">男<input type="radio" name="sex" value="1">女
+
+                        </div>
+                        <div class="radio-cotent">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="same">
+                    <div>最高学历</div>
+                    <input type="text" class="grey education" name="education">
+
+                </div>
+
+                <div class="same">
+                    <div>职称</div>
+                    <input type="text" class="grey position" name="jobRank">
+
+                </div>
+
+                <div class="same">
+                    <div>薪资水平</div>
+                    <input type="text" class="grey salary" name="salary">
+
+                </div>
+                <div class="same">
+                    <div>入党时间</div>
+                    <input type="date" class="grey joinPartyTime" name="joinPartyTime">
+
+                </div>
+                <div class="same">
+                    <div>党费最后缴纳时间</div>
+                    <input type="date" class="grey lastPayTime" name="lastPayTime">
+
+                </div>
+                <div class="same">
+                    <div>当前身份</div>
+                    <div class="select-content grey"></div>
+                    <select name="partyStatus" id="" class="grey identity">
+                        <option value="0">积极分子</option>
+                        <option value="1">预备党员</option>
+                        <option value="2">党员</option>
+                    </select>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+<script src="../js/jquery.js"></script>
+<script src="../js/public.js"></script>
+<script>
+
+    $('input').prop('disabled', true);
+    $('select').prop('disabled', true);
+
+    $('input[type="date"]:disabled').css('margin-right', '-35px');
+
+    $('.radio-edit').hide();
+    $('.identity').hide();
+
+    $('.edit').click(function () {
+        if ($(this).text() == '编辑') {
+
+            $(this).text('保存');
+            $('.title').text('修改个人信息');
+            $('input').prop('disabled', false);
+
+            $('select').prop('disabled', false);
+
+            $('input[type="date"]').css('margin-right', '0');
+            $('input[type="date"]').css('background-color', '#ccc');
+
+            $('.radio-edit').show();
+            $('.radio-cotent').hide();
+            $('.identity').show();
+            $('.select-content').hide();
+            $('select').css('background-color', '#ccc');
+
+        } else {
+
+            $(this).text('编辑');
+            $('.title').text('个人党建信息');
+            $('.radio-edit').hide();
+            $('.radio-cotent').show();
+            $('.identity').hide();
+            $('.select-content').show();
+           /* console.log($('#upLoadForm').serialize());*/
+           $('input[type="file"]').prop('disabled',true);
+             console.log(new FormData($('#upLoadForm')[0]));
+            $.ajax({
+
+                url: url + '/user/modifyInfo.do',
+                type: 'post',
+                /*data: $('#upLoadForm').serialize(),*/
+                data:new FormData($('#upLoadForm')[0]),
+                processData: false,
+                contentType: false,
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+                success: function () {
+                    $('input').prop('disabled', true);
+                    $('select').prop('disabled', true);
+                    $('input[type="date"]').css('background-color', '#fff');
+                    $('input[type="date"]:disabled').css('margin-right', '-35px')
+                    window.location.reload();
+                }
+            })
+        }
+
+    });
+
+    $('.header').click(function () {
+        $('.choose').click();
+    });
+
+    $.ajax({
+        url: url + '/user/userInfo.do',
+        type: 'get',
+        headers: {
+            token: localStorage.getItem('token')
+        },
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log(data);
+            if (data.code) {
+                $('.header').attr('src', data.data.header);
+                $('.name').val(data.data.username);
+                $('.id-card').text(data.data.idCard);
+                $('.home-address').val(data.data.hometown);
+                $('.job-address').val(data.data.address);
+                $('.nation').val(data.data.nation);
+                $('.weixin').val(data.data.wxNum);
+                $('.qq').val(data.data.qqNum);
+
+                if (data.data.sex == 0) {
+                    $(".radio-cotent").text("男");
+                    $('input[type="radio"][value="0"]').prop("checked", true);
+                } else {
+                    $(".radio-cotent").text("女");
+                    $('input[type="radio"][value="1"]').prop("checked", true);
+
+                }
+
+
+//
+                $('.education').val(data.data.education);
+                $('.position').val(data.data.jobRank);
+                $('.salary').val(data.data.salary);
+                $('.joinPartyTime').val(data.data.joinPartyTime);
+                $('.lastPayTime').val(data.data.lastPayTime);
+                $('.select-content').text(data.data.partyIdentity);
+                switch (data.data.partyIdentity) {
+                    case '积极分子':
+                        $('option:eq(2)').prop('selected', true);
+                        break;
+                    case '预备党员':
+                        $('option:eq(1)').prop('selected', true);
+                        break;
+                    case '党员':
+                        $('option:eq(0)').prop('selected', true);
+                        break;
+                }
+            }
+
+        }
+    });
+
+    var str='';
+    $('.choose').change(function () {
+        var file=this.files[0];
+        var fr=new FileReader();
+        fr.readAsDataURL(file);
+        fr.onload=function () {
+            $('.header').prop('src',this.result);
+            str=this.result.split(',')[1];
+           $.ajax({
+               url:url+'/image/uploadBase64.do',
+               type:'post',
+               data:{
+                   myFile:str
+               },
+               headers:{
+                   token:localStorage.getItem('token')
+               },
+               success:function (data) {
+                   console.log(data.url);
+                   $('.hid').val(data.url);
+                   console.log($('.hid').val());
+               }
+           })
+        }
+
+    })
+</script>
+</html>
+
+
+
